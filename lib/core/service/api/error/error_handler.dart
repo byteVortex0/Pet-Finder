@@ -23,13 +23,9 @@ class ErrorHandler {
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.connectionError:
         try {
-          final response = await RetryHelper.retryRequest(
-            Dio(),
-            error.requestOptions,
-          );
+          await RetryHelper.retryRequest(Dio(), error.requestOptions);
           return Failure(
             ErrorModel(
-              statusCode: response.statusCode,
               message: "Request retried successfully after network issue.",
             ),
           );
@@ -61,10 +57,7 @@ class ErrorHandler {
 
     if (statusCode == 401) {
       return Failure(
-        const ErrorModel(
-          statusCode: 401,
-          message: "Unauthorized. Token expired or invalid.",
-        ),
+        const ErrorModel(message: "Unauthorized. Token expired or invalid."),
       );
     }
 
@@ -73,22 +66,12 @@ class ErrorHandler {
         final errorModel = ErrorModel.fromJson(data);
         return Failure(errorModel);
       } else if (data is String) {
-        return Failure(ErrorModel(statusCode: statusCode, message: data));
+        return Failure(ErrorModel(message: data));
       } else {
-        return Failure(
-          ErrorModel(
-            statusCode: statusCode,
-            message: "Unexpected response format",
-          ),
-        );
+        return Failure(ErrorModel(message: "Unexpected response format"));
       }
     } catch (e) {
-      return Failure(
-        ErrorModel(
-          statusCode: statusCode,
-          message: "Error parsing server response: $e",
-        ),
-      );
+      return Failure(ErrorModel(message: "Error parsing server response: $e"));
     }
   }
 }
