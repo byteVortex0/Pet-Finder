@@ -1,43 +1,17 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'error_model.g.dart';
-
-@JsonSerializable()
 class ErrorModel {
-  final int? statusCode;
-  final String? message;
-  final Map<String, List<String>>? errors;
+  final String message;
 
-  const ErrorModel({this.statusCode, this.message, this.errors});
+  const ErrorModel({required this.message});
 
-  factory ErrorModel.fromJson(Map<String, dynamic> json) =>
-      _$ErrorModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorModelToJson(this);
-
-  String get displayMessage {
-    if (errors != null && errors!.isNotEmpty) {
-      final buffer = StringBuffer();
-
-      errors!.forEach((field, messages) {
-        if (messages.length > 1) {
-          buffer.writeln("$field:");
-          for (final msg in messages) {
-            buffer.writeln("  • $msg");
-          }
-        } else {
-          buffer.writeln("$field: ${messages.first}");
-        }
-        buffer.writeln(); 
-      });
-
-      return buffer.toString().trim();
+  factory ErrorModel.fromJson(dynamic response) {
+    if (response is String && response.trim().isNotEmpty) {
+      return ErrorModel(message: response.trim());
     }
-
-    return message ?? "Unknown error occurred";
+    return const ErrorModel(message: "An unknown error occurred");
   }
 
+  String get displayMessage => message;
+
   @override
-  String toString() =>
-      'ErrorModel(statusCode: $statusCode, message: $message, errors: $errors)';
+  String toString() => 'ErrorModel(message: $message)';
 }

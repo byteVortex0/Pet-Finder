@@ -18,9 +18,39 @@ class StyleManager {
     color: ColorManager.black,
   );
 
+  static TextStyle black24Bold = GoogleFonts.poppins(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
+
+  static TextStyle black20Bold = GoogleFonts.poppins(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
+
+  static TextStyle black18Bold = GoogleFonts.poppins(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
+
+  static TextStyle brand14SemiBold = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorManager.brandColor,
+  );
+
   static TextStyle grey16Regular = GoogleFonts.poppins(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorManager.grey,
+  );
+
+  static TextStyle grey14Regular = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorManager.grey900,
   );
 }
