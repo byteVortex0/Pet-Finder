@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 enum RequestState { initial, loading, success, error, empty }
 
-class GenericState<T> {
+class GenericState<T> extends Equatable {
   final RequestState state;
   final T? data;
   final String? message;
@@ -28,4 +30,7 @@ class GenericState<T> {
       GenericState(state: RequestState.error, message: message);
 
   factory GenericState.empty() => const GenericState(state: RequestState.empty);
+
+  @override
+  List<Object?> get props => [state, data, message];
 }

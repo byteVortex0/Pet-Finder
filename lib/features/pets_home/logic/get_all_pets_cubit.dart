@@ -10,7 +10,7 @@ class GetAllPetsCubit extends Cubit<GenericState<List<Pets>>> {
 
   final GetAllPetsRepo petsRepo;
 
-  Future<void> getAllItemInCard({int limit = 10, int page = 0}) async {
+  Future<void> getAllPets({int limit = 10, int page = 0}) async {
     emit(GenericState.loading());
     final result = await petsRepo.getAllPets(limit, page);
     if (result is Success<List<Pets>>) {

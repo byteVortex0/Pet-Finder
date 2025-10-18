@@ -30,7 +30,7 @@ class AppRoutes {
             providers: [
               BlocProvider(create: (context) => sl<HomeNavCubit>()),
               BlocProvider(
-                create: (context) => sl<GetAllPetsCubit>()..getAllItemInCard(),
+                create: (context) => sl<GetAllPetsCubit>()..getAllPets(),
               ),
 
               BlocProvider(
