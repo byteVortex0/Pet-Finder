@@ -5,9 +5,9 @@ The focus of this project is writing testable, maintainable code using Bloc, Dio
 ---
 ## 🧱 Architecture Overview
 This project follows a clean and modular architecture separating shared and feature-specific layers.
-
+<pre>
 lib/
- ├── core/                  # Shared logic, services, utils, themes, constants
+ ├── core/                  # Shared logic, services, utils, themes, constants  
  └── features/
       ├── pets_home/
       │     ├── data/       # Models and repositories
@@ -18,7 +18,7 @@ lib/
       │     ├── logic/
       │     └── ui/
       └── ... (other features)
-
+</pre>
 ---
 ### ⚙️ Tech Stack
 
